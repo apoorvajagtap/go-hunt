@@ -1,30 +1,35 @@
 package config
 
-regexs := {
-    "albums": r'href=\"\.\/albumarchive\/\d*?\/album\/(.*?)\" jsaction.*?>(?:<.*?>){5}(.*?)<\/div><.*?>(\d*?) ',
-    "photos": r'\],\"(https:\/\/lh\d\.googleusercontent\.com\/.*?)\",\[\"\d{21}\"(?:.*?,){16}\"(.*?)\"',
-    "review_loc_by_id": r'{}\",.*?\[\[null,null,(.*?),(.*?)\]'
+// regexs = {
+//     "albums": r'href=\"\.\/albumarchive\/\d*?\/album\/(.*?)\" jsaction.*?>(?:<.*?>){5}(.*?)<\/div><.*?>(\d*?) ',
+//     "photos": r'\],\"(https:\/\/lh\d\.googleusercontent\.com\/.*?)\",\[\"\d{21}\"(?:.*?,){16}\"(.*?)\"',
+//     "review_loc_by_id": r'{}\",.*?\[\[null,null,(.*?),(.*?)\]'
+// }
+
+var headers = map[string]string {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0",
+    "Connection": "Keep-Alive",
 }
 
-headers := {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0',
-    'Connection': 'Keep-Alive'
-}
-
-headless         := True // if True, it doesn't show the browser while scraping GMaps reviews
-ytb_hunt_always  := True // if True, search the Youtube channel everytime
-gmaps_radius     := 30 // in km. The radius distance to create groups of gmaps reviews.
-gdocs_public_doc := "1jaEEHZL32t1RUN5WuZEnFpqiEPf_APYKrRBG9LhLdvE"  // The public Google Doc to use it as an endpoint, to use Google's Search.
-data_path        := "resources/data.txt"
-browser_waiting_timeout := 120
+var headless         = true // if true, it doesn't show the browser while scraping GMaps reviews
+var ytb_hunt_always  = true // if true, search the Youtube channel everytime
+var gmaps_radius     = 30 // in km. The radius distance to create groups of gmaps reviews.
+var gdocs_public_doc = "1jaEEHZL32t1RUN5WuZEnFpqiEPf_APYKrRBG9LhLdvE"  // The public Google Doc to use it as an endpoint, to use Google's Search.
+var data_path        = "resources/data.txt"
+var browser_waiting_timeout = 120
 
 // Profile pictures options
-write_profile_pic := True
-profile_pics_dir := "profile_pics"
+var write_profile_pic = true
+var profile_pics_dir = "profile_pics"
 
 // Cookies
-// if True, it will uses the Google Account cookies to request the services,
+// if true, it will uses the Google Account cookies to request the services,
 // and gonna be able to read your personal informations
-gmaps_cookies := False
-calendar_cookies := False
-default_consent_cookie := "YES+FR.fr+V10+BX"
+var gmaps_cookies = false
+var calendar_cookies = false
+var default_consent_cookie = "YES+FR.fr+V10+BX"
+
+
+func GetDataPath() string {
+	return data_path
+}

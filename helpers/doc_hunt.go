@@ -2,10 +2,11 @@ package helpers
 
 import(
 	"fmt"
-	"os"
-	"io/ioutil"
+	//"os"
+	//"io/ioutil"
 	"strings"
 	"net/url"
+	"log"
 	validator "github.com/asaskevich/govalidator"
 )
 
@@ -18,8 +19,9 @@ func DocHunt(doc_path string) {
 	
 	urlValid := validator.IsURL(doc_path)
 	if urlValid != true {
-		fmt.Println("Please enter a valid URL..")
-		os.Exit(1)
+		log.Fatal("Please enter a valid URL..")
+		//fmt.Println("Please enter a valid URL..")
+		//os.Exit(1)
 	}
 	
 	filtered_url, _ := url.Parse(doc_path)
@@ -40,8 +42,9 @@ func DocHunt(doc_path string) {
 	if doc_id != "" {
 		fmt.Println("Document ID: ", doc_id)
 	} else {
-		fmt.Println("\nDocument ID not found.\nPlease make sure you have something that looks like this in your link :1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms")
-		os.Exit(1)
+		log.Fatal("\nDocument ID not found.\nPlease make sure you have something that looks like this in your link :1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms")
+		//fmt.Println("\nDocument ID not found.\nPlease make sure you have something that looks like this in your link :1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms")
+		//os.Exit(1)
 	}
 	//doc_id := split_doc_url[len(split_doc_url)-1]
 	//fmt.Println(doc_path, "[[[[[[[[[[[", doc_path_1, "\\\\\\\\\\\\", doc_path_list)
@@ -52,10 +55,10 @@ func DocHunt(doc_path string) {
 	// 	os.Exit(1)
 	// }
 
-	internal_token := ""
-	cookies := {}
+	// internal_token := ""
+	// cookies := {}
 
 
-	content, err := ioutil.ReadFile("config.data_path")
+	// content, err := ioutil.ReadFile("config.data_path")
 	//file, err := os.Open("config.data_path")
 }
