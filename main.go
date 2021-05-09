@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"github.com/apoorvajagtap/go-hunt/modules/doc_hunt"
-	"github.com/apoorvajagtap/go-hunt/modules/email_hunt"
+	"ghunt/helpers"
+	// "github.com/apoorvajagtap/go-hunt/modules/doc_hunt"
+	// "github.com/apoorvajagtap/go-hunt/modules/email_hunt"
 )
-
 
 func strExists(slice []string, sub_string string) bool {
 	for _, ele := range slice {
@@ -32,20 +32,26 @@ func main() {
 		os.Exit(0)
 	}
 
-	module = strings.ToLower(os.Args[1])
-	if len(os.Args) >= 3{
-		data = os.Args[2]
-	}
-	else{
-		data = None
+	module := strings.ToLower(os.Args[1])
+	fmt.Println(module)
+	// if len(os.Args) >= 3 {
+	// 	data := os.Args[2]
+	// }
+
+	//data := ""
+	//data := "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+	data := "https://docs.google.com/document/d/10IDHugxMazEM7SuhoaNMfH85ZrdvZlUNVXG8j33ohs4/edit#123"
+
+
+	if module == "email" {
+		fmt.Println(helpers.DeclareEmail())
+		//helpers.EmailHunt(data)
+
+	} else if module == "doc" { 
+		//fmt.Println(helpers.DeclareDoc())
+		helpers.DocHunt(data)
 	}
 
-	if module == "email"{
-		email_hunt(data)
-	}
-	else if module == "doc"{
-		doc_hunt(data)
-	}
 }
 
 // STORY LINE
