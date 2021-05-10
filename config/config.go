@@ -33,3 +33,7 @@ var default_consent_cookie = "YES+FR.fr+V10+BX"
 func GetDataPath() string {
 	return data_path
 }
+
+func GetDefaultConsentCookie() string {
+	return default_consent_cookie
+}
