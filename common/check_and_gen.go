@@ -2,32 +2,29 @@ package common
 
 import (
 	"os"
-	"io/ioutil"
+	//"io/ioutil"
 	"encoding/json"
 	"ghunt/config"
 	"fmt"
+	"log"
 )
 
-type JSONResponse struct{
+type CookieCollect struct {
 	Hangouts string `json:"hangouts_auth"`
 	Internal string `json:"internal_auth"`
-	Keys Nested `json:"nested_keys"`
-	Cookies_ID Cookies `json:"cookies"` 
-}
-
-type Nested struct {
-	Doc string `json:"google_doc"`
-	HangoutPath string `json:"hangouts"`
-	InternalPath string `json:"internal"`
-}
-
-type Cookies struct{
-	SID string `json:"sid_cookie"`
-	SSID string `json:"ssid_cookie"`
-	APISID string `json:"apisid_cookie"`
-	SAPISID string `json:"sapsid_cookie"`
-	HSID string `json:"hsid_cookie"`
-	CONSENT string `json:"consent"`
+	Keys struct {
+		GDoc string `json:"gdoc"`
+		HangOK string `json:"hangouts"`
+		IntK string `json:"internal"`
+	} `json:"keys"`
+	Cookies struct {
+		SID string `json:"sid"`
+		SSID string `json:"ssid"`
+		APISID string `json:"apisid"`
+		SAPISID	string `json:"sapisid"`
+		HSID string `json:"hsid"`
+		CONSENT string `json:"consent"`
+	} `json:"cookies"`
 }
 
 // Change the current working directory to allow using GHunt from anywhere
@@ -36,15 +33,17 @@ func GetSavedCookies() {
 	dataPath := config.GetDataPath()
 	fmt.Println("here?", )
 	if _, err := os.Stat(dataPath); err == nil{
-		//file, err := os.Open(data_path)
-		//defer file.Close()
 
-		byteValue, _ := ioutil.ReadFile(dataPath)
-		var result map[string]string
+		var content CookieCollect
+		configFile, err := os.Open(dataPath)
+		defer configFile.Close()
+		if err != nil{
+			log.Fatal(err)
+		}
 
-		json.Unmarshal([]byte(byteValue), &result)
+		jsonParser := json.NewDecoder(configFile)
+		err = jsonParser.Decode(&content)
 
-		fmt.Println("reached here!!", result)
-
+		fmt.Println("check now!!", content.Keys.GDoc)
 	}
 }
