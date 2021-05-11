@@ -37,3 +37,11 @@ func GetDataPath() string {
 func GetDefaultConsentCookie() string {
 	return default_consent_cookie
 }
+
+func GetHeaders() map[string]string {
+	return headers
+}
+
+func GetHeadLess() bool {
+	return headless
+}

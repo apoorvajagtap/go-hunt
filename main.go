@@ -40,7 +40,8 @@ func main() {
 	// }
 
 	fmt.Println("calling check&gen")
-	common.GetSavedCookies()
+	//common.GetSavedCookies()
+	common.CheckAndGen()
 
 	data := ""
 	//data := "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
